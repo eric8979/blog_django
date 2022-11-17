@@ -1,0 +1,46 @@
+{% extends 'main.html' %} {% block content %}
+
+<style>
+  .post-top {
+    display: flex;
+    flex-direction: row;
+  }
+  .post-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: aquamarine;
+  }
+  .post-cat {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: aquamarine;
+  }
+  .post-gist {
+    margin: 0.4rem 0;
+  }
+  .post-date {
+    color: #bbbbbb;
+    font-size: 0.7rem;
+  }
+</style>
+
+<div class="post-container">
+  {% for post in posts %} {% if post.status == 1 %}
+  <a class="post" href="{% url 'post' post.id %}">
+    <div class="post-top">
+      <span class="post-title"
+        >{{post.title}}
+        <small class="post-cat">({{post.category}})</small>
+      </span>
+    </div>
+
+    <p class="post-gist">💎 {{post.gist}}</p>
+
+    <small class="post-date">({{post.created_on}})</small>
+  </a>
+  {% endif %}
+  <hr />
+  {% endfor %}
+</div>
+
+{% endblock content %}

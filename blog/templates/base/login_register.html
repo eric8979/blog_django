@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+<!---->
+{% block content %}
+<!---->
+{% if page == 'login' %}
+<div>
+  <h3>🤖 Welcome back!</h3>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <label>
+      ID :
+      <input type="text" name="id" placeholder="Use username or email" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Password :
+      <input type="password" name="password" placeholder="Enter Password" />
+    </label>
+    <br />
+    <br />
+
+    <input type="submit" value="Login" />
+  </form>
+  <p>
+    Don't have an account?
+    <a href="{% url 'register' %}">Sign up</a>
+  </p>
+</div>
+{% else %}
+<div>
+  <h3>🤖 Welcome to my blog!</h3>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <label>
+      Username :
+      <input
+        type="text"
+        name="username"
+        placeholder="Enter Username"
+        required
+      />
+    </label>
+    <br />
+    <br />
+    <label>
+      Email :
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+      />
+    </label>
+    <br />
+    <br />
+    <label>
+      Password :
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter Password"
+        required
+      />
+    </label>
+    <br />
+    <br />
+
+    <input type="submit" value="Register" />
+  </form>
+  <p>
+    Have an account?
+    <a href="{% url 'login' %}">Login</a>
+  </p>
+</div>
+{% endif %}
+<!---->
+{% endblock content %}

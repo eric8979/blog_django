@@ -1,0 +1,36 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<style>
+  .post-update-box * {
+    font-size: 1.3rem;
+  }
+  .post-update-box textarea {
+    width: 94vw;
+  }
+</style>
+<div>
+  <form class="post-update-box" method="POST" action="">
+    {% csrf_token %}
+    <label>
+      Title: <input name="title" type="text" placeholder="{{ post.title }}" />
+    </label>
+    <label>
+      Cat:
+      <input name="category" type="text" placeholder="{{ post.category }}" />
+    </label>
+    <label>
+      Gist:
+      <input name="gist" type="text" placeholder="{{ post.gist }}" />
+    </label>
+    <br />
+    <label>
+      Status: 1(pub)/0(Draft)
+      <input name="status" type="text" placeholder="{{ post.status }}" />
+    </label>
+    <br />
+    <br />
+    <textarea rows="20" cols="80" name="contents">{{ contents }}</textarea>
+    <br />
+    <input type="submit" value="Submit" style="color: orange" />
+  </form>
+</div>
+{% endblock content %}

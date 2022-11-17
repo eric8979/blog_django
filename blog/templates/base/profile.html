@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+  .btn {
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: #111111;
+    padding: 0.2rem 0.4rem;
+  }
+  .logout-btn {
+    color: pink;
+  }
+  .post-btn {
+    color: yellow;
+  }
+  .signout-btn, .signout-warning {
+    color: red;
+    text-decoration: underline;
+  }
+</style>
+
+<div>
+  <h3>🧑‍💻 {{user.username}}'s Profile</h3>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <label>
+      Username :
+      <input type="text" name="username" placeholder="{{user.username}}" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Email :
+      <input type="email" name="email" placeholder="{{user.email}}" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Password :
+      <input type="password" name="password" placeholder="Update Password" />
+    </label>
+
+    <input type="submit" value="Update" />
+  <form>
+  <hr> 
+
+  <a class="btn logout-btn" href="{% url 'logout' %}">Logout</a>
+  {% if request.user.is_superuser %}
+    <a class="btn post-btn" href="{% url 'create-post' %}">New Post</a>
+  {% endif %}
+  <br>
+  <br>
+  <a class="btn signout-btn" href="{% url 'signout' %}">Sign out</a>
+  <span class="signout-warning"> Signout is unreversible! </span>
+</div>
+{% endblock content %}

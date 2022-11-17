@@ -1,0 +1,23 @@
+{% load static %}
+<div class="footer-container">
+  <span class="footer-title">Eric Whales's Coding blog</span>
+
+  {% if request.path != "/about" %}
+  <a class="footer-about" href="{% url 'about' %}">about</a>
+  {% endif %}
+
+  <div class="footer-links">
+    <a href="https://github.com/eric8979"> GitHub </a>
+    <a href="https://www.linkedin.com/in/eric-whale-4853301ab/"> LinkedIn </a>
+  </div>
+
+  <div>
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img
+        alt="Creative Commons License"
+        style="height: 70%"
+        src="https://i.creativecommons.org/l/by/4.0/88x31.png"
+      />
+    </a>
+  </div>
+</div>

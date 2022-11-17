@@ -1,0 +1,67 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60vw;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  .profile-container div {
+    margin: 0 auto;
+  }
+
+  .profile-image {
+    border-radius: 50%;
+    width: 10rem;
+  }
+
+  h3,
+  p {
+    text-align: center;
+  }
+  @media only screen and (max-width: 600px) {
+    .profile-container {
+      width: 85vw;
+    }
+  }
+</style>
+
+{% load static %}
+<div class="profile-container">
+  <div>
+    <img
+      class="profile-image"
+      src="{% static 'base/images/profile.jpeg' %}"
+      alt="Eric Whale"
+    />
+  </div>
+
+  <div>
+    <h3>
+      Eric Whale <br />
+      (SunHyuk Hwang)
+    </h3>
+    <p>
+      Computer Science and Engineering student at
+      <span style="font-weight: bold; color: rgb(153, 14, 23)"
+        >KyungHee Univ</span
+      >.
+      <br />
+      <span style="font-weight: bold; color: rgb(255, 127, 80)"
+        >Computer Geek</span
+      >
+      who loves to learn new things.
+      <br />
+      Interested in
+      <span style="font-weight: bold; color: skyblue"> Building a System</span
+      >(Backend) and
+      <span style="font-weight: bold; color: rgb(0, 255, 65)"
+        >Cyber Security</span
+      >.
+    </p>
+  </div>
+</div>
+
+{% endblock content %}

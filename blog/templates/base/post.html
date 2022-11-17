@@ -1,0 +1,109 @@
+{% extends 'main.html' %} 
+{% block content %}
+
+<style>
+  .codehilite{ 
+    background-color: black !important;
+    border: 1px solid white;
+    border-radius: .35rem !important; 
+    padding: 0 0.25rem !important;
+    margin-bottom: .25rem !important;
+  }
+  .codehilite * {
+    background-color: black !important;
+    font-size: 1.1rem;
+  }
+  code {
+    color:#bbbbbb !important; 
+  }
+
+  .comment-form * {
+    font-size: 1.3rem;
+  }
+  .comments-container {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+  }
+  .comment-box {
+    background-color: #777777;
+    padding-left: 0.5rem;
+    border-radius: 10px;
+  }
+  .comment-box * {
+    background-color: #777777;
+  }
+  .comment-user {
+    margin: 0.5rem 0;
+    font-size: 1.3rem;
+  }
+  .comment-date {
+    font-size: 0.9rem;
+  }
+  .comment-text {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .codehilite * {
+      font-size: 0.9rem;
+    }
+
+    .comment-form * {
+      font-size: 1rem;
+      width: 95vw;
+    }
+
+    .comments-container {
+      width: 90vw;
+    }
+    .comment-user {
+      font-size: 1.1rem;
+    }
+    .comment-date {
+      font-size: 0.8rem;
+    }
+    .comment-text {
+      font-size: 1rem;
+    } 
+  }
+</style>
+
+<div>
+  <small><b>{{post.category}} </b> -
+    {% if post.created_on == post.updated_on %}
+    ({{post.created_on}})
+    {% else %}
+    edited ({{post.updated_on}})
+    {% endif %}
+  </small>
+  {% autoescape off %} {{contents}} {% endautoescape %}
+
+  <br>
+  {% if request.user.is_superuser %}
+    <a href="{% url 'update-post' pk=post.id %}">Edit Post</a>
+  {% endif %}
+
+  <hr>
+
+  <form class="comment-form" method="POST" action="">
+    {% csrf_token %}
+    <textarea name="new-comment" rows="5" cols="70" placeholder="Write a comment..." /></textarea>
+    <br>
+    <input type="submit" value="Post" />
+  </form>
+
+  <br>
+
+  <div class="comments-container">
+    {% for comment in comments %}
+    <div class="comment-box">
+      <h4 class="comment-user">🗣 {{comment.user_id}} <small class="comment-date">({{comment.created_on}})</small></h4>
+      <p class="comment-text">{{comment.contents}}</p>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

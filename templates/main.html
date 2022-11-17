@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/favicon.ico' %}"
+    />
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <title>Whale's Coding blog</title>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <hr />
+
+    <div class="flash-message">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    <div class="main-body">{% block content%} {% endblock content%}</div>
+    <br />
+
+    {% include 'footer.html' %}
+  </body>
+</html>
